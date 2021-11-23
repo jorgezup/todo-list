@@ -1,3 +1,4 @@
+/* eslint-disable sonarjs/cognitive-complexity */
 /* eslint-disable max-lines-per-function */
 /* eslint-disable editorconfig/editorconfig */
 /* eslint-disable prefer-arrow-callback */
@@ -8,7 +9,8 @@ window.onload = function () {
   const olElement = document.getElementById('lista-tarefas');
   const btnLimparListaTarefas = document.getElementById('apaga-tudo');
   const btnLimparTarefasFinalizadas = document.getElementById('remover-finalizados');
-  
+  const btnSalvarTarefas = document.getElementById('salvar-tarefas');
+
   function changeBackgroundColor(e) {
     const listOfLi = document.querySelectorAll('li');
     for (let i = 0; i < listOfLi.length; i += 1) {
@@ -51,4 +53,34 @@ window.onload = function () {
       }
     }
   });
+
+  btnSalvarTarefas.addEventListener('click', function () {
+    const listOfLi = document.querySelectorAll('li');
+    for (let i = 0; i < listOfLi.length; i += 1) {
+      const obj = {
+        text: listOfLi[i].textContent,
+        /* https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_NOT */
+        class: !!listOfLi[i].classList.contains('completed'),
+      };
+      localStorage.setItem(i, JSON.stringify(obj));
+    }
+  });
+
+  function checkLocalStorage() {
+      const keys = Object.keys(localStorage);
+      for (let key = 0; key < keys.length; key += 1) {
+        const liElement = document.createElement('li');
+        const taskString = localStorage.getItem(key);
+        const taskObj = JSON.parse(taskString);
+        if (taskString) {
+          liElement.textContent = taskObj.text;
+          if (taskObj.class === true) {
+            liElement.classList.add('completed');
+          }
+          olElement.appendChild(liElement);
+        }
+    }
+  }
+
+  checkLocalStorage();
 };
