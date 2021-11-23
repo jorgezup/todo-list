@@ -6,6 +6,7 @@ window.onload = function () {
   const input = document.getElementById('texto-tarefa');
   const btnCriarTarefa = document.getElementById('criar-tarefa');
   const olElement = document.getElementById('lista-tarefas');
+  const btnLimparListaTarefas = document.getElementById('apaga-tudo');
   
   function changeBackgroundColor(e) {
     const listOfLi = document.querySelectorAll('li');
@@ -34,4 +35,11 @@ window.onload = function () {
     });
   });
 
+  btnLimparListaTarefas.addEventListener('click', function () {
+    const listOfLi = document.querySelectorAll('li');
+
+    for (let i = 0; i < listOfLi.length; i += 1) {
+      listOfLi[i].remove();
+    }
+  });  
 };
