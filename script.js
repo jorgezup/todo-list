@@ -16,6 +16,11 @@ window.onload = function () {
     }
     e.style.backgroundColor = 'rgb(128, 128, 128)';
   }
+
+  function completeTask(e) {
+    e.classList.toggle('completed');
+  }
+
   btnCriarTarefa.addEventListener('click', function () {
     const liElement = document.createElement('li');
     liElement.textContent = input.value;
@@ -23,6 +28,9 @@ window.onload = function () {
     input.value = '';
     liElement.addEventListener('click', function () {
       changeBackgroundColor(liElement);
+    });
+    liElement.addEventListener('dblclick', function () {
+      completeTask(liElement);
     });
   });
 
