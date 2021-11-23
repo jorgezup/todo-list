@@ -7,6 +7,7 @@ window.onload = function () {
   const btnCriarTarefa = document.getElementById('criar-tarefa');
   const olElement = document.getElementById('lista-tarefas');
   const btnLimparListaTarefas = document.getElementById('apaga-tudo');
+  const btnLimparTarefasFinalizadas = document.getElementById('remover-finalizados');
   
   function changeBackgroundColor(e) {
     const listOfLi = document.querySelectorAll('li');
@@ -37,9 +38,17 @@ window.onload = function () {
 
   btnLimparListaTarefas.addEventListener('click', function () {
     const listOfLi = document.querySelectorAll('li');
-
     for (let i = 0; i < listOfLi.length; i += 1) {
       listOfLi[i].remove();
     }
-  });  
+  });
+
+  btnLimparTarefasFinalizadas.addEventListener('click', function () {
+    const listOfLi = document.querySelectorAll('li');
+    for (let i = 0; i < listOfLi.length; i += 1) {
+      if (listOfLi[i].classList.contains('completed')) {
+        listOfLi[i].remove();
+      }
+    }
+  });
 };
