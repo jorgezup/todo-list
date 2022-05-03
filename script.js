@@ -10,6 +10,7 @@ window.onload = function () {
   const btnLimparListaTarefas = document.getElementById('apaga-tudo');
   const btnLimparTarefasFinalizadas = document.getElementById('remover-finalizados');
   const btnSalvarTarefas = document.getElementById('salvar-tarefas');
+  const btnRemoverTarefaSelecionada = document.getElementById('remover-selecionado');
 
   function changeBackgroundColor(e) {
     const listOfLi = document.querySelectorAll('li');
@@ -83,4 +84,8 @@ window.onload = function () {
   }
 
   checkLocalStorage();
+
+  btnRemoverTarefaSelecionada.addEventListener('click', function () {
+    
+  });
 };
